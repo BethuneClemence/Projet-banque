@@ -27,7 +27,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/blk-design-system/index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-          <span>BLK•</span> Design System
+          <span>Ma vie•</span> Ma banque
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
@@ -92,17 +92,45 @@
               <div class="card card-register">
                 <div class="card-header">
                   <img class="card-img" src="assets/img/square1.png" alt="Card image">
-                  <h4 class="card-title">Register</h4>
+                  <h4 class="card-title">Connexi <span style="color:#1F87F7">on</span></h4>
                 </div>
                 <div class="card-body">
-                  <form class="form">
+                  <form id="form-connexion" class="form">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-key-25"></i>
+                        </div>
+                      </div>
+                      <input type="text" placeholder="Identifiant de compte" class="form-control">
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input type="password" class="form-control" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-check text-left">
+                      <label class="form-check-label">
+                        Devenez client
+                        <a id="btn-inscription" href="#">c'est par là</a> !
+                      </label>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-info btn-round btn-lg">Valider</a>
+                    </div>
+                  </form>
+                  <!-- Form inscription -->
+                  <form id="form-inscription" class="form">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Full Name">
+                      <input type="text" class="form-control" placeholder="Nom et prénom">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -115,24 +143,25 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
+                          <i class="tim-icons icon-mobile"></i>
+                        </div>
+                      </div>
+                      <input type="text" placeholder="Tél" class="form-control">
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
                       <input type="text" class="form-control" placeholder="Password">
                     </div>
-                    <div class="form-check text-left">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">
-                        <span class="form-check-sign"></span>
-                        I agree to the
-                        <a href="javascript:void(0)">terms and conditions</a>.
-                      </label>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-info btn-round btn-lg">Valider</a>
                     </div>
                   </form>
                 </div>
-                <div class="card-footer">
-                  <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg">Get Started</a>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -147,6 +176,23 @@
       </div>
     </div>
   </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#form-inscription").hide();
+    });
+
+    $("#btn-inscription").click(function(){
+        $("#form-inscription").show();
+        $("#form-connexion").hide();
+    });
+  </script>
+
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>

@@ -2,7 +2,7 @@
 
     $url = $_SERVER['REQUEST_URI'];
     $url = explode('/', $url);
-    
+    $_GLOBALS['SERVER'] = "http://127.0.0.1/Banque/"; 
     if(count($url) == 3){
 
         $route = $url[count($url) - 1];
