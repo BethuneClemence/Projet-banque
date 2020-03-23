@@ -1,25 +1,7 @@
+<?php
+  require_once('views/enTete.php');
+?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <title>
-    Blk• Design System by Creative Tim
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="assets/css/blk-design-system.css?v=1.0.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/demo/demo.css" rel="stylesheet" />
-</head>
 
 <body class="register-page">
   <!-- Navbar -->
@@ -27,7 +9,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="https://demos.creative-tim.com/blk-design-system/index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-          <span>BLK•</span> Design System
+          <span>Ma vie•</span> Ma banque
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
@@ -70,10 +52,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Back to Kit</a>
+            <a class="nav-link" href="index.html">Besoins d'aide ? </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/creativetimofficial/blk-design-system/issues">Have an issue?</a>
+            <a class="nav-link" href="https://github.com/creativetimofficial/blk-design-system/issues">Mot de passse oublié ?</a>
           </li>
         </ul>
       </div>
@@ -92,25 +74,41 @@
               <div class="card card-register">
                 <div class="card-header">
                   <img class="card-img" src="assets/img/square1.png" alt="Card image">
-                  <h4 class="card-title">Register</h4>
+                  <h4 id="titre" class="card-title">Connexi <span style="color:#1F87F7">on</span></h4>
                 </div>
                 <div class="card-body">
-                  <form class="form">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <i class="tim-icons icon-single-02"></i>
-                        </div>
-                      </div>
-                      <input type="text" class="form-control" placeholder="Full Name">
+                  <form id="form-connexion" class="form" action="<?php echo $_GLOBALS['SERVER'];?>connexion" method="POST">
+                    <?php if(isset($inscriptionOk)){ ?>
+                    <div class="alert alert-success" role="alert">
+                      Votre compte a bien été crée, vous pouvez désormais vous connecter !
                     </div>
+                    <?php } ?>
+                    <?php if(isset($inscriptionKo)){ ?>
+                    <div class="alert alert-danger" role="alert">
+                      Oups, une erreur s'est produite... Veuillez réessayez ! 
+                    </div>
+                    <?php } ?>
+
+                    <?php if(isset($echecConnexion)){ ?>
+                    <div class="alert alert-danger" role="alert">
+                        Votre idenfiant et/ou mot de passe est incorrect !  
+                    </div>
+                    <?php } ?>
+
+                    <?php if(isset($deconexionSucces)){ ?>
+                    <div class="alert alert-success" role="alert">
+                      Vous avez été déconnecté avec succès ! 
+                    </div>
+                    <?php } ?>
+
+                    
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
-                          <i class="tim-icons icon-email-85"></i>
+                          <i class="tim-icons icon-key-25"></i>
                         </div>
                       </div>
-                      <input type="text" placeholder="Email" class="form-control">
+                      <input type="text" placeholder="Identifiant de compte" class="form-control" name="id_compte">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -118,21 +116,87 @@
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Password">
+                      <input type="password" class="form-control" placeholder="Mot de passe" name="mdp">
                     </div>
                     <div class="form-check text-left">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">
-                        <span class="form-check-sign"></span>
-                        I agree to the
-                        <a href="javascript:void(0)">terms and conditions</a>.
+                        Devenez client
+                        <a id="btn-inscription" href="#">c'est par là</a> !
                       </label>
+                    </div>
+                    <div class="card-footer">
+                        <input type="hidden" name="formulaireEnvoye" value="OK">
+                        <a href="#" onclick="document.getElementById('form-connexion').submit();" class="btn btn-info btn-round btn-lg">Valider</a>
+                    </div>
+                  </form>
+                  <!-- Form inscription -->
+                  <form id="form-inscription" class="form" action="<?php echo $_GLOBALS['SERVER'];?>inscription" method="POST">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Nom" name="nom" required>
+                     
+                    </div>
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" placeholder="Prénom" class="form-control" name="prenom" required>
+                    </div>    
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-email-85"></i>
+                        </div>
+                      </div>
+                      <input type="email" placeholder="Email" class="form-control" name="email" required>
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-mobile"></i>
+                        </div>
+                      </div>
+                      <input type="text" placeholder="Tél" class="form-control" name="tel" required>
+                    </div>
+                    <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-money-coins"></i>
+                        </div>
+                   </div>
+
+                      <select id="inputState" class="form-control" name="type_compte">
+
+                        <option disabled selected style="color:#666888">Compte</option>
+                        <option value="Courant" style="color:#666888">Courant</option>
+                        <option value="Epargne" style="color:#666888">Epargne</option>
+                        
+                      </select>
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input type="password" class="form-control" placeholder="Password" name="mdp" required>
+                    </div>
+                    <div class="card-footer">
+                      <input type="hidden" name="formulaireEnvoye" value="OK">
+
+                        <a href="#" onclick="document.getElementById('form-inscription').submit();" class="btn btn-info btn-round btn-lg">Valider</a>
+
                     </div>
                   </form>
                 </div>
-                <div class="card-footer">
-                  <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg">Get Started</a>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -147,24 +211,27 @@
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="assets/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!-- Chart JS -->
-  <script src="assets/js/plugins/chartjs.min.js"></script>
-  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="assets/js/plugins/moment.min.js"></script>
-  <script src="assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
-  <!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
-</body>
 
-</html>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#form-inscription").hide();
+    });
+
+    $("#btn-inscription").click(function(){
+        $("#form-inscription").show();
+        $("#form-connexion").hide();
+        $('#titre').html("inscripti<span style='color:#1F87F7'>on</span>");
+        
+    });
+  </script>
+
+  <?php
+
+      require_once('views/pied.php');
+
+  ?>
