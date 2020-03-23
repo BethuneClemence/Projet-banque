@@ -14,15 +14,38 @@
                 break;
 
             case 'profile':
-                echo "Profile";
+                require_once('model/modele.php');
                 break;
 
+            case 'inscription':
+                require_once('controllors/inscription.php');
+                break;
+            
+            case 'connexion':
+                require_once('controllors/connexion.php');
+                break;
+
+            case 'accueilApplication':
+                require_once('accueilApplication.php');
+                break;
+            
+            case 'seDeconnecter':
+                require_once('controllors/seDeconnecter.php');
+                break;
+            
+            case '404' :
+                require_once('views/404.php');
+        
+            case 'login' :
+                require_once('views/login.php');
+
+
             default:
-                echo "ERROR 404";
+                echo "ERROR";
         }
     }else{
 
-        echo "ERROR 404"; 
+        require_once('views/404.php'); 
     }
 
 ?>
